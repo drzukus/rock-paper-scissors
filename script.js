@@ -1,16 +1,12 @@
 const choices = ["rock", "paper", "scissors"];
+const selectionBtns = document.querySelectorAll("[data-selection]");
 
-function getPlayerChoice() {
-    let playerChoice = prompt("Rock, Paper, or Scissors?");
-    playerChoice = playerChoice.toLowerCase().trim();
-
-    if (!choices.includes(playerChoice)) {
-        console.log("Invalid choice, try again")
-        return getPlayerChoice()
-    }
-
-    return choices.indexOf(playerChoice)
-}
+selectionBtns.forEach(selectionBtn => {
+    selectionBtn.addEventListener("click", e => {
+        const selectionName = selectionBtn.dataset.selection;
+        game(selectionName);
+    })
+})
 
 
 function getComputerChoice() {
@@ -26,34 +22,34 @@ function playRound(pChoiceInt, cChoiceInt) {
     return outcomes[pChoiceInt][cChoiceInt];
 }
 
-// function game() {
-//     let playerPts = 0;
-//     let compPts = 0;
+let playerPts = 0;
+let compPts = 0;
+
+function game(playerChoice) {
+    if (playerPts == 5 || compPts == 5) {
+        return document.getElementById("announcement").innerHTML = winner();
+    }
+
+    const pChoiceInt = choices.indexOf(playerChoice);
+    const cChoiceInt = getComputerChoice();
+    outcome = playRound(pChoiceInt, cChoiceInt);
+
+    if (outcome == 1) {
+        playerPts += 1;
+        document.getElementById("player_result").innerHTML = playerPts;
+    }
+
+    else if (outcome == 2) {
+        compPts += 1;
+        document.getElementById("comp_result").innerHTML = compPts;
+    }
+}
     
-//     for (let i = 0; i < 5; i++) {
-//         const pChoiceInt = getPlayerChoice();
-//         const cChoiceInt = getComputerChoice();
-
-//         outcome = playRound(pChoiceInt, cChoiceInt);
-
-//         if (outcome == 1) {
-//             playerPts += 1;
-//         }
-
-//         else if (outcome == 2) {
-//             compPts += 1;
-//         }
-//     }
-
-//     if (playerPts > compPts) {
-//         return `Congratulations, you won ${playerPts} to ${compPts}`
-//     }
-//     else if (compPts > playerPts) {
-//         return `Whoops, you lost ${compPts} to ${playerPts}`
-//     }
-//     else {
-//         return `It's a tie! ${playerPts} to ${compPts} `
-//     }
-// }
-
-// console.log(game())
+function winner() {
+    if (playerPts > compPts) {
+        return `Congratulations, you won ${playerPts} to ${compPts}`
+    }
+    else if (compPts > playerPts) {
+        return `Whoops, you lost ${compPts} to ${playerPts}`
+    }
+}
