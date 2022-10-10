@@ -26,34 +26,34 @@ function playRound(pChoiceInt, cChoiceInt) {
     return outcomes[pChoiceInt][cChoiceInt];
 }
 
-function game() {
-    let playerPts = 0;
-    let compPts = 0;
+// function game() {
+//     let playerPts = 0;
+//     let compPts = 0;
     
-    for (let i = 0; i < 5; i++) {
-        const pChoiceInt = getPlayerChoice();
-        const cChoiceInt = getComputerChoice();
+//     for (let i = 0; i < 5; i++) {
+//         const pChoiceInt = getPlayerChoice();
+//         const cChoiceInt = getComputerChoice();
 
-        outcome = playRound(pChoiceInt, cChoiceInt);
+//         outcome = playRound(pChoiceInt, cChoiceInt);
 
-        if (outcome == 1) {
-            playerPts += 1;
-        }
+//         if (outcome == 1) {
+//             playerPts += 1;
+//         }
 
-        else if (outcome == 2) {
-            compPts += 1;
-        }
-    }
+//         else if (outcome == 2) {
+//             compPts += 1;
+//         }
+//     }
 
-    if (playerPts > compPts) {
-        return `Congratulations, you won ${playerPts} to ${compPts}`
-    }
-    else if (compPts > playerPts) {
-        return `Whoops, you lost ${compPts} to ${playerPts}`
-    }
-    else {
-        return `It's a tie! ${playerPts} to ${compPts} `
-    }
-}
+//     if (playerPts > compPts) {
+//         return `Congratulations, you won ${playerPts} to ${compPts}`
+//     }
+//     else if (compPts > playerPts) {
+//         return `Whoops, you lost ${compPts} to ${playerPts}`
+//     }
+//     else {
+//         return `It's a tie! ${playerPts} to ${compPts} `
+//     }
+// }
 
-console.log(game())
+// console.log(game())
